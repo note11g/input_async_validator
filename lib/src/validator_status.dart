@@ -15,7 +15,7 @@ class InputValidStatus implements InputValidationDoneState {
   String toString() => 'InputValidStatus()';
 }
 
-sealed class InvalidStatus implements InputValidationDoneState {}
+sealed class InputInvalidStatus implements InputValidationDoneState {}
 
 class InputIdleStatus implements InputValidationDoneState {
   const InputIdleStatus();
@@ -24,7 +24,7 @@ class InputIdleStatus implements InputValidationDoneState {
   String toString() => 'InputIdleStatus()';
 }
 
-class InputCustomInvalidStatus implements InvalidStatus {
+class InputCustomInvalidStatus implements InputInvalidStatus {
   final String message;
 
   const InputCustomInvalidStatus({required this.message});
@@ -40,7 +40,7 @@ class InputAsyncValidatingStatus implements InputValidatingState {
   String toString() => 'AsyncValidatingStatus()';
 }
 
-class InputAsyncValidationErrorStatus implements InvalidStatus {
+class InputAsyncValidationErrorStatus implements InputInvalidStatus {
   final dynamic error;
 
   const InputAsyncValidationErrorStatus(this.error);

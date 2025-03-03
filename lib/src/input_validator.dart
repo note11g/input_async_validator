@@ -12,8 +12,8 @@ import 'futureor_extension.dart';
 import 'validator_status.dart';
 
 final class InputValidator extends ChangeNotifier {
-  final InvalidStatus? Function(String str) validate;
-  final Future<InvalidStatus?> Function(String str)? validateAsync;
+  final InputInvalidStatus? Function(String str) validate;
+  final Future<InputInvalidStatus?> Function(String str)? validateAsync;
   final Duration asyncValidationDebounceTime;
   final TextEditingController inputController;
 
@@ -64,8 +64,8 @@ final class InputValidator extends ChangeNotifier {
   }
 
   /// use only isInvalid -> currentError
-  InvalidStatus? get currentError => switch (currentStatus) {
-        InvalidStatus invalid => invalid,
+  InputInvalidStatus? get currentError => switch (currentStatus) {
+    InputInvalidStatus invalid => invalid,
         _ => null,
       };
 
