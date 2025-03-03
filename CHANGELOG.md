@@ -1,3 +1,3 @@
-## 0.0.1-alpha1
+## 0.0.1-alpha.1
 
 * Prototype of the project
