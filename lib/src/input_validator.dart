@@ -39,7 +39,7 @@ final class InputValidator extends ChangeNotifier {
 
   final _inputStreamController = StreamController<String>.broadcast();
   late String lastValidatingText = inputController.text;
-  CancelableOperation<InputValidationState>? _currentAsyncValidationJob;
+  CancelableOperation<InputValidationDoneState>? _currentAsyncValidationJob;
 
   void _listener() {
     final currentStr = inputController.text;
@@ -54,8 +54,8 @@ final class InputValidator extends ChangeNotifier {
 
   InputValidationState _currentStatus = const InputIdleStatus();
 
-  InputValidationState _setCurrentStatus(
-      InputValidationState status, String text) {
+  ST _setCurrentStatus<ST extends InputValidationState>(
+      ST status, String text) {
     // temp arg2
     _currentStatus = status;
     print('_setCurrentStatus: $status, $text');
@@ -65,17 +65,17 @@ final class InputValidator extends ChangeNotifier {
 
   /// use only isInvalid -> currentError
   InputInvalidStatus? get currentError => switch (currentStatus) {
-    InputInvalidStatus invalid => invalid,
+        InputInvalidStatus invalid => invalid,
         _ => null,
       };
 
-  FutureOr<InputValidationState> forceValidateNow() {
+  FutureOr<InputValidationDoneState> forceValidateNow() {
     final rawText = inputController.text;
     return _runValidation(trimText ? rawText.trim() : rawText)
         .then((p0) => _setCurrentStatus(p0, rawText));
   }
 
-  FutureOr<InputValidationState> _runValidation(String str) {
+  FutureOr<InputValidationDoneState> _runValidation(String str) {
     print('runValidation: $str');
     lastValidatingText = str;
     if (emptyIsIdle && str.isEmpty) return const InputIdleStatus();
@@ -107,7 +107,7 @@ final class InputValidator extends ChangeNotifier {
     }
   }
 
-  Future<InputValidationState> get nextDoneState async {
+  Future<InputValidationDoneState> get nextDoneState async {
     final isSameValueValidatingNow = lastValidatingText == inputController.text;
     if (isSameValueValidatingNow) {
       return switch (currentStatus) {
