@@ -1,0 +1,20 @@
+name: input_validator
+description: "simple text field validator that support async validation"
+version: 0.0.1
+repository: https://github.com/note11g/input_validator
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  async: ^2.11.0
+  rxdart: ^0.28.0 # todo: remove
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
