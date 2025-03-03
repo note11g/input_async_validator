@@ -1,7 +1,7 @@
-name: input_validator
+name: text_input_validator
 description: "simple text field validator that support async validation"
-version: 0.0.1
-repository: https://github.com/note11g/input_validator
+version: 0.0.1-alpha.1
+repository: https://github.com/note11g/text_input_validator
 
 environment:
   sdk: ^3.6.0

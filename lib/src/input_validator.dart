@@ -96,7 +96,9 @@ final class InputValidator extends ChangeNotifier {
           asyncValidationResultFuture, onCancel: () {
         _currentAsyncValidationJob = null;
         print('canceled! $str');
-      }).then((asyncInvalidStatus) => asyncInvalidStatus ?? const InputValidStatus(),
+      }).then(
+          (asyncInvalidStatus) =>
+              asyncInvalidStatus ?? const InputValidStatus(),
           onError: (e, _) => InputAsyncValidationErrorStatus(e));
 
       return _currentAsyncValidationJob!.value;
